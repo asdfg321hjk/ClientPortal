@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Portal - Client Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>Studio Portal</h1>
+                <p>Access your project dashboard</p>
+            </div>
+            
+            <div class="login-card">
+                <div class="card-header">
+                    <h2>Welcome back</h2>
+                    <p>Sign in to your account to continue</p>
+                </div>
+                <div class="card-content">
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="client@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Sign In</button>
+                    </form>
+                    <div class="login-footer">
+                        <p>Need help? Contact your project manager</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App (Dashboard + Project History) -->
+    <div id="main-app" class="screen">
+        <!-- Navigation Header -->
+        <header class="main-header">
+            <div class="header-container">
+                <div class="header-left">
+                    <h1>Studio Portal</h1>
+                    <nav class="main-nav">
+                        <button class="nav-btn active" data-screen="dashboard">Dashboard</button>
+                        <button class="nav-btn" data-screen="history">Project History</button>
+                    </nav>
+                </div>
+                <button id="logout-btn" class="logout-btn">Sign Out</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Screen -->
+            <div id="dashboard-content" class="content-screen active">
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+                    <div class="welcome-text">
+                        <h1>Welcome back, <span id="client-name">Acme Corporation</span></h1>
+                        <p>Here's the latest update on your project: <span class="project-name">Brand Identity & Website Redesign</span></p>
+                    </div>
+                    <div class="overall-progress">
+                        <div class="progress-number" id="overall-progress">49%</div>
+                        <div class="progress-label">Overall Progress</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Project Progress -->
+                    <div class="progress-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Project Progress</h3>
+                                <p>Track the status of each project phase</p>
+                            </div>
+                            <div class="card-content">
+                                <div id="progress-list" class="progress-list">
+                                    <!-- Progress items will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="actions-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Latest Delivery</h3>
+                                <p>Download your most recent files</p>
+                            </div>
+                            <div class="card-content">
+                                <div class="delivery-item">
+                                    <div class="delivery-name">Brand Guidelines v2.1</div>
+                                    <div class="delivery-date">Updated 2 days ago</div>
+                                    <button class="btn-primary btn-small">
+                                        <i class="fas fa-download"></i>
+                                        Download Files
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Next Milestone</h3>
+                                <p>Upcoming project checkpoint</p>
+                            </div>
+                            <div class="card-content">
+                                <div class="milestone-item">
+                                    <i class="fas fa-calendar-alt milestone-icon"></i>
+                                    <div class="milestone-details">
+                                        <div class="milestone-name">Brand Guidelines Review</div>
+                                        <div class="milestone-date">
+                                            <i class="fas fa-clock"></i>
+                                            March 15, 2024
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project History Screen -->
+            <div id="history-content" class="content-screen">
+                <div class="history-header">
+                    <h1>Project History</h1>
+                    <p>View and download all project deliverables</p>
+                </div>
+
+                <div class="history-grid">
+                    <div class="deliverables-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Deliverables</h3>
+                                <p>All files and documents delivered for your project</p>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="deliverables-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="deliverables-tbody">
+                                            <!-- Table rows will be populated by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notes-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Project Notes</h3>
+                                <p>Latest updates and feedback requests</p>
+                            </div>
+                            <div class="card-content">
+                                <div class="notes-list">
+                                    <div class="note-item note-warning">
+                                        <i class="fas fa-comment-dots note-icon"></i>
+                                        <div class="note-content">
+                                            <div class="note-title">Waiting for your feedback...</div>
+                                            <div class="note-text">We've delivered the latest logo concepts and would love to hear your thoughts. Please review and let us know your preferred direction.</div>
+                                            <div class="note-date">2 days ago</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="note-item note-info">
+                                        <i class="fas fa-comment-dots note-icon"></i>
+                                        <div class="note-content">
+                                            <div class="note-title">Brand guidelines updated</div>
+                                            <div class="note-text">We've incorporated your feedback and updated the brand guidelines. The new version is ready for download.</div>
+                                            <div class="note-date">5 days ago</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="note-item note-success">
+                                        <i class="fas fa-comment-dots note-icon"></i>
+                                        <div class="note-content">
+                                            <div class="note-title">Wireframes approved</div>
+                                            <div class="note-text">Great news! The wireframes have been approved and we're moving forward with the visual design phase.</div>
+                                            <div class="note-date">1 week ago</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
